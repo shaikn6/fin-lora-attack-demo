@@ -1,6 +1,6 @@
 torch==2.15.0
-transformers>=4.51,<5
-peft>=0.13
+transformers>=5.23.0,<6
+peft>=0.22.0
 accelerate
 spaces
-gradio==6.17.3
+gradio==6.32.0
