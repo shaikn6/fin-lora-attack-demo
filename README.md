@@ -1,5 +1,7 @@
 # Fin-LoRA attack demo
 
+[![CI](https://github.com/shaikn6/fin-lora-attack-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/shaikn6/fin-lora-attack-demo/actions/workflows/ci.yml)
+
 **Adversarially trained adapters: 90.4-91.1% accuracy under the four planted sentences offered here, vs 50.6-64.1% for the standard adapters (1,000 test tweets; see the limits below)**
 
 Paste a financial headline. The app shows the model's Bearish / Bullish / Neutral probabilities, then appends
@@ -71,3 +73,11 @@ recipe and drops to 75.0% under the same paragraphs. A 1.5B v3 candidate reached
 the 259 manually labeled headlines, so it was not published. Only hand-written attacks were tested, so neither is safe
 on untrusted text.
 Research and education only. Not investment advice.
+
+## Run locally
+
+```bash
+pip install -r requirements.txt pytest
+HF_HUB_OFFLINE=1 python -m pytest -q   # tests run on CPU
+python app.py                          # the app needs a CUDA GPU (the Space runs on ZeroGPU)
+```
