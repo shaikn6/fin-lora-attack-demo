@@ -84,7 +84,9 @@ def run(model_name, text, phrasing, target):
     model.to("cuda")
     planted = f"{text} {PHRASINGS[phrasing].format(target)}"
     clean, attacked = _probs(tok, model, ids, text), _probs(tok, model, ids, planted)
-    row = lambda p: {label: round(v, 3) for label, v in zip(LABELS, p)}
+
+    def row(p):
+        return {label: round(v, 3) for label, v in zip(LABELS, p)}
     _, _, line = verdict_of(clean, attacked)
     return row(clean), row(attacked), line + f"\n\nEdited text sent to the model:\n\n> {planted}"
 
